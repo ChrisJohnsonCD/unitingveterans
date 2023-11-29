@@ -5,18 +5,21 @@ import React, { useState } from 'react';
 import VeteransPage from './veterans';
 import LocalEventsPage from './localEvents';
 import AboutUsPage from './aboutUs';
-
+import ContactForm from './contact';
 
 
 
 
 
 // Contact Page Component
-const ContactPage = () => (
-  <div className="bg-green-500 p-20 h-full flex items-center justify-center">
-    <h2 className="text-3xl font-bold text-white">Contact Page</h2>
-  </div>
-);
+// const ContactPage = () => (
+//   <div className="bg-green-500 p-20 h-full flex items-center justify-center">
+//     <div className="text-white">
+//       {/* Include the ContactForm component */}
+//       <ContactForm />
+//     </div>
+//   </div>
+// );
 
 const Page = () => {
   const [currentPage, setCurrentPage] = useState('veterans');
@@ -93,7 +96,7 @@ const Page = () => {
           {currentPage === 'veterans' && <VeteransPage />}
           {currentPage === 'localEvents' && <LocalEventsPage />}
           {currentPage === 'aboutUs' && <AboutUsPage />}
-          {currentPage === 'contact' && <ContactPage />}
+          {currentPage === 'contact' && <ContactForm />}
         </div>
       </main>
 
