@@ -1,9 +1,30 @@
-import React from 'react';
+
+
+"use client";
+import React, { useState } from 'react';
 import VeteransPage from './veterans';
-import Menu from './menu'; 
+import LocalEventsPage from './localEvents';
+import AboutUsPage from './aboutUs';
 
 
-export default function Page() {
+
+
+
+
+// Contact Page Component
+const ContactPage = () => (
+  <div className="bg-green-500 p-20 h-full flex items-center justify-center">
+    <h2 className="text-3xl font-bold text-white">Contact Page</h2>
+  </div>
+);
+
+const Page = () => {
+  const [currentPage, setCurrentPage] = useState('veterans');
+
+  const handleMenuClick = (page) => {
+    setCurrentPage(page);
+  };
+
   const headerStyle = {
     background: 'radial-gradient(circle,#ffffff, #e63946)',
     padding: '20px',
@@ -33,23 +54,57 @@ export default function Page() {
         </h1>
       </header>
 
-       {/* Main Content */}
+      {/* Main Content */}
       <main className="flex-grow bg-black p-20 flex">
         <div className="flex-none">
-          <Menu />
+          {/* Menu */}
+          <div className="text-white">
+            <h2 className="text-4xl font-bold mb-4">Explore</h2>
+            <div
+              className={`bg-gradient-to-r from-gray-800 to-gray-700 py-3 px-4 rounded-lg cursor-pointer hover:bg-gray-600 transition duration-300 transform hover:scale-105 ${currentPage === 'veterans' ? 'bg-gray-600' : ''}`}
+              onClick={() => handleMenuClick('veterans')}
+            >
+              Veterans Page
+            </div>
+            <div
+              className={`bg-gradient-to-r from-gray-800 to-gray-700 py-3 px-4 rounded-lg cursor-pointer hover:bg-gray-600 transition duration-300 transform hover:scale-105 ${currentPage === 'localEvents' ? 'bg-gray-600' : ''}`}
+              onClick={() => handleMenuClick('localEvents')}
+            >
+              Local Events
+            </div>
+            <div
+              className={`bg-gradient-to-r from-gray-800 to-gray-700 py-3 px-4 rounded-lg cursor-pointer hover:bg-gray-600 transition duration-300 transform hover:scale-105 ${currentPage === 'aboutUs' ? 'bg-gray-600' : ''}`}
+              onClick={() => handleMenuClick('aboutUs')}
+            >
+              About Us
+            </div>
+            <div
+              className={`bg-gradient-to-r from-gray-800 to-gray-700 py-3 px-4 rounded-lg cursor-pointer hover:bg-gray-600 transition duration-300 transform hover:scale-105 ${currentPage === 'contact' ? 'bg-gray-600' : ''}`}
+              onClick={() => handleMenuClick('contact')}
+            >
+              Contact
+            </div>
+          </div>
+          
         </div>
+
         <div className="flex-grow">
-          <VeteransPage />
+          {/* Display Content based on the selected page */}
+          {currentPage === 'veterans' && <VeteransPage />}
+          {currentPage === 'localEvents' && <LocalEventsPage />}
+          {currentPage === 'aboutUs' && <AboutUsPage />}
+          {currentPage === 'contact' && <ContactPage />}
         </div>
       </main>
-    
-      
-       {/* Footer */}
-       <footer style={footerStyle} className="p-8 text-center border-t-2 border-gold">
+
+      {/* Footer */}
+      <footer style={footerStyle} className="p-8 text-center border-t-2 border-gold">
         <p>
           &copy; 2023 Chris Johnson, CD Website. All rights reserved.
         </p>
-        </footer>
+      </footer>
     </div>
   );
-}
+};
+
+export default Page;
