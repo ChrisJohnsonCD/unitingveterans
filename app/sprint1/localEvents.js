@@ -4,14 +4,13 @@ import Image from 'next/image';
 
 // Local Legion Image Component
 const LocalLegionImage = () => (
-  <div className="rounded-lg shadow-lg cursor-pointer">
+  <div className="rounded-lg shadow-lg ">
     <Image
       src="https://i.pinimg.com/originals/0b/02/dd/0b02dda195601246e0601ff08dba4676.jpg"
       alt="Local Legion in Calgary"
       width={800}
       height={500}
-      // Add an onClick event to handle the action when the image is clicked
-      onClick={() => window.location.href = 'path/to/local-legion-page'}
+       
     />
   </div>
 );
