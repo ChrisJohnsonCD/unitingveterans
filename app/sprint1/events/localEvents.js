@@ -1,5 +1,5 @@
 import React from 'react';
-import SubMenu from './submenu';
+import SubMenu from '../menus/submenu';
 import Image from 'next/image';
 
 // Local Legion Image Component

@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { useUserAuth } from './_utils/auth_context';
+import { useUserAuth } from '../_utils/auth_context';
+import { useRouter } from 'next/router';
 
-const VeteransPage = () => {
+
+export default function VeteransPage() 
+{
   const [showModal, setShowModal] = useState(false);
+  const router = useRouter();
 
   const handleImageClick = () => {
     setShowModal(true);
@@ -13,28 +17,29 @@ const VeteransPage = () => {
     setShowModal(false);
   };
 
-  const { user, gitHubSignIn, firebaseSignOut } = useUserAuth() ;
+  const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
 
   // Function to handle GitHub sign-in
   const handleSignIn = async () => {
     try {
       await gitHubSignIn();
       closeModal(); // Close the modal after successful sign-in
+      router.push('/_utils/secured/profilePage'); // Redirect to the successful login page
     } catch (error) {
       console.log(error);
     }
   };
 
-  
   // Function to handle sign-up (update this function as needed)
-const handleSignUp = async () => {
-  try {
-    // Add logic for sign-up action (e.g., firebaseSignUp())
-    closeModal(); // Close the modal after successful sign-up
-  } catch (error) {
-    console.log(error);
-  }
-};
+  const handleSignUp = async () => {
+    try {
+      // Add logic for sign-up action (e.g., firebaseSignUp())
+      closeModal(); // Close the modal after successful sign-up
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="bg-black flex items-center justify-center">
       {/* Image Container */}
@@ -89,4 +94,4 @@ const handleSignUp = async () => {
   );
 };
 
-export default VeteransPage;
+
