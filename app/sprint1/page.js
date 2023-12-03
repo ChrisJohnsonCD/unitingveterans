@@ -1,12 +1,10 @@
 // sprint1/page.js
-
 "use client";
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import Layout from './layout'; // Import the Layout component
 import Menu from './menus/mainMenu';
 
-export default function Page () {
+export default function Page() {
   const [currentPage, setCurrentPage] = useState('veterans');
   const Component = dynamic(() => import(`./events/${currentPage}`));
 
@@ -20,15 +18,19 @@ export default function Page () {
   };
 
   return (
-    <Layout>
-      <main className="flex-grow bg-black p-20 flex">
-        <div className="flex-grow">
-          <Menu />
+    <main className="flex ml-10 mt-10 mb-10 gap-96">
+      {/* Menu on the top left */}
+      <div className="">
+        <Menu onClick={handleMenuClick} />
+      </div>
+      
+      {/* Content on the right */}
+      <div className="">
+        {/* Shifted Image */}
+        <div className="">
           <Component />
         </div>
-      </main>
-    </Layout>
+      </div>
+    </main>
   );
-};
-
-
+}

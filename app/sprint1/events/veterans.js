@@ -1,32 +1,38 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useUserAuth } from '../_utils/auth_context';
-import { useRouter } from 'next/router';
 
-
-export default function VeteransPage() 
-{
+export default function VeteransPage() {
+  // State for controlling the modal visibility
   const [showModal, setShowModal] = useState(false);
-  const router = useRouter();
 
+
+  // TODO  issue with the sign in********
+
+
+  // User authentication context
+  const { gitHubSignIn } = useUserAuth() || {};
+
+  // Handle click on the image to show the modal
   const handleImageClick = () => {
     setShowModal(true);
   };
 
+  // Close the modal
   const closeModal = () => {
     setShowModal(false);
   };
 
-  const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
-
   // Function to handle GitHub sign-in
   const handleSignIn = async () => {
     try {
-      await gitHubSignIn();
+      await useUserAuth();
       closeModal(); // Close the modal after successful sign-in
-      router.push('/_utils/secured/profilePage'); // Redirect to the successful login page
+      // Handle the navigation or page change directly within the component
+      // Replace the following line with the desired navigation logic
+      window.location.href = '/_utils/secured/profilePage';
     } catch (error) {
-      console.log(error);
+      console.error('Error during sign-in:', error);
     }
   };
 
@@ -36,15 +42,15 @@ export default function VeteransPage()
       // Add logic for sign-up action (e.g., firebaseSignUp())
       closeModal(); // Close the modal after successful sign-up
     } catch (error) {
-      console.log(error);
+      console.error('Error during sign-up:', error);
     }
   };
 
   return (
-    <div className="bg-black flex items-center justify-center">
+  <div className="bg-black flex items-center justify-center ">
       {/* Image Container */}
       <div className="flex flex-col items-center">
-        <div className="ml-[-25%]" onClick={handleImageClick}>
+        <div className="" onClick={handleImageClick}>
           <Image
             src="https://fridaystuff.com/wp-content/uploads/2019/09/Canadian-Veteran-Honour-And-Freedom-800x800.jpg"
             alt="Veterans Image"
@@ -57,7 +63,7 @@ export default function VeteransPage()
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center text-black">
           <div className="bg-white p-8 rounded-lg text-center">
             <h2 className="text-2xl font-bold mb-4">Welcome!</h2>
             <p className="mb-4">Please select an option:</p>
@@ -92,6 +98,4 @@ export default function VeteransPage()
       )}
     </div>
   );
-};
-
-
+}
