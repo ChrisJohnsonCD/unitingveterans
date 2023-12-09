@@ -1,3 +1,5 @@
+"use client";
+
 // Import necessary modules
 import React, { useState } from 'react';
 
