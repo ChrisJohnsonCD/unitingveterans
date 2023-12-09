@@ -34,9 +34,7 @@ const Layout = ({ children }) => {
         <h1>Uniting Veterans</h1>
       </header>
 
-      {/* Main Menu */}
-      {/* <Menu /> */}
-
+      
       {/* Main Content */}
       {children}
 
